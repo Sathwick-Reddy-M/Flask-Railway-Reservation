@@ -23,7 +23,7 @@
 
 `/search`
 
-`/seats/<train_id>`
+`/seats/<train_id>/<date_time>`
 
 `/details`
 
@@ -40,4 +40,4 @@ Station 1 -> Station 3 -> Station 2 -> Station 5
 
 Station 2 -> Station 1 -> Station 4 -> Station 5
 
-You can find the awsome CSS railway seat style sheet here - https://codepen.io/siiron/pen/MYXZWg
+You can find the awsome CSS railway seat booking style sheet here - https://codepen.io/siiron/pen/MYXZWg
