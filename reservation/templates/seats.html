@@ -1,0 +1,71 @@
+{% extends 'layout.html' %}
+
+{% block title %} Seats {% endblock %}
+
+{% block styles %}
+
+<link rel="stylesheet" href="{{url_for('static', filename='seat_style.css')}}">
+
+{% endblock %}
+
+{% block login %}
+
+<span class="navbar-text">
+    <a class="nav-link active" aria-current="page" href="{{url_for('logout')}}">Logout</a>
+</span>
+
+{% endblock %}
+
+{% block content %}
+
+<h3>Train Details</h3>
+<p>Train Name: {{train_details.train_name}}</p>
+
+<form action="" method="POST">
+    <input type="hidden" name="csrf_token" value="{{csrf}}">
+
+    <div class="plane">
+        <ol class="cabin fuselage">
+
+            {% for seat in seat_details %}
+
+            {% if loop.index % 4 == 1 %}
+            <li class="row row--{{loop.index // 4}}">
+                <ol class="seats">
+                    {% endif %}
+
+                    {% if seat.passenger_id %}
+
+                    <li class="seat">
+                        <input type="checkbox" disabled id="{{seat.compartment_order}}+{{seat.seat_number}}" />
+                        <label for="{{seat.compartment_order}}+{{seat.seat_number}}">Occupied</label>
+                    </li>
+
+                    {% else %}
+                    <li class="seat">
+                        <input type="checkbox" name="seatSelection"
+                            value="{{seat.train_id}} {{seat.compartment_order}} {{seat.seat_number}} {{seat.train_start_time}}"
+                            id="{{seat.compartment_order}}+{{seat.seat_number}}" />
+                        <label for="{{seat.compartment_order}}+{{seat.seat_number}}">{{seat.seat_number}}</label>
+                    </li>
+
+                    {% endif %}
+
+                    {% if loop.index % 4 == 0 or loop.revindex == 1 %}
+                </ol>
+            </li>
+            {% endif %}
+
+
+            {% endfor %}
+
+        </ol>
+    </div>
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+
+</form>
+
+
+{% endblock %}

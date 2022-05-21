@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+{% block title %} Verification {% endblock %}
+
+{% block styles %} {% endblock %}
+
+{% block login %}
+
+<span class="navbar-text">
+    <a class="nav-link active" aria-current="page" href="{{url_for('signup')}}">SignUp</a>
+</span>
+<span class="navbar-text">
+    <a class="nav-link active" aria-current="page" href="{{url_for('login')}}">Login</a>
+</span>
+
+{% endblock %}
+
+{% block content %}
+
+<h1>Verify Email</h1>
+
+<form action="{{url_for('otp')}}" method="POST">
+    <input type="hidden" name="email" value="{{email}}">
+    <label for="otp">Enter OTP:</label>
+    <input type="number" name="otp" id="otp"><br><br>
+
+    <button type="submit">Submit</button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'layout.html' %}
+
+{% block title %} Train Search {% endblock %}
+
+{% block styles %} {% endblock %}
+
+{% block content %}
+<form action="" method="POST">
+    {{form.hidden_tag()}}
+
+    {{form.start.label()}}
+
+    {{form.start()}} <br><br>
+
+    {% if form.start.errors %}
+
+    {% for error in form.start.errors %}
+
+    <p>{{ error }}</p>
+
+    {% endfor %}
+
+    {% endif %}
+
+    {{form.destination.label()}}
+
+    {{form.destination()}} <br><br>
+
+    {% if form.destination.errors %}
+
+    {% for error in form.destination.errors %}
+
+    <p>{{ error }}</p>
+
+    {% endfor %}
+
+    {% endif %}
+
+    {{form.searchdate.label()}}
+
+    {{form.searchdate()}} <br><br>
+
+    {% if form.searchdate.errors %}
+
+    {% for error in form.searchdate.errors %}
+
+    <p>{{ error }}</p>
+
+    {% endfor %}
+
+    {% endif %}
+
+
+
+    {{form.submit()}}
+</form>
+
+{% endblock %}

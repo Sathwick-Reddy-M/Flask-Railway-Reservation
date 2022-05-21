@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% block title %} SignUp {% endblock %}
+
+{% block styles %} {% endblock %}
+
+{% block login %}
+
+<span class="navbar-text">
+    <a class="nav-link active" aria-current="page" href="{{url_for('signup')}}">SignUp</a>
+</span>
+<span class="navbar-text">
+    <a class="nav-link active" aria-current="page" href="{{url_for('login')}}">Login</a>
+</span>
+
+{% endblock %}
+
+{% block content %}
+
+<form action="" method="POST">
+    {{form.hidden_tag()}}
+
+    {{form.email.label()}}
+
+    {{form.email()}} <br><br>
+
+    {{form.pwd.label()}}
+
+    {{form.pwd()}} <br><br>
+
+    {{form.age.label()}}
+
+    {{form.age()}} <br><br>
+
+    {{form.submit()}}
+
+</form>
+
+{% endblock %}

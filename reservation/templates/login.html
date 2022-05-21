@@ -1,0 +1,44 @@
+{% extends 'layout.html' %}
+
+{% block title %} Login {% endblock %}
+
+{% block styles %} {% endblock %}
+
+{% block login %}
+
+{% if not is_login %}
+
+<span class="navbar-text">
+    <a class="nav-link active" aria-current="page" href="{{url_for('signup')}}">SignUp</a>
+</span>
+<span class="navbar-text">
+    <a class="nav-link active" aria-current="page" href="{{url_for('login')}}">Login</a>
+</span>
+
+{% else %}
+<span class="navbar-text">
+    <a class="nav-link active" aria-current="page" href="{{url_for('logout')}}">Logout</a>
+</span>
+
+{% endif %}
+
+{% endblock %}
+
+{% block content %}
+
+<form action="" method="POST">
+    {{form.hidden_tag()}}
+
+    {{form.email.label()}}
+
+    {{form.email()}} <br><br>
+
+    {{form.pwd.label()}}
+
+    {{form.pwd()}} <br><br>
+
+    {{form.submit()}}
+
+</form>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+
+{% block title %} Home {% endblock %}
+
+{% block styles %} {% endblock %}
+
+{% block login %}
+
+{% if not is_login %}
+
+<span class="navbar-text">
+    <a class="nav-link active" aria-current="page" href="{{url_for('signup')}}">SignUp</a>
+</span>
+<span class="navbar-text">
+    <a class="nav-link active" aria-current="page" href="{{url_for('login')}}">Login</a>
+</span>
+
+{% else %}
+<span class="navbar-text">
+    <a class="nav-link active" aria-current="page" href="{{url_for('logout')}}">Logout</a>
+</span>
+
+{% endif %}
+
+
+{% endblock %}
+
+{% block content %}
+
+<h3>Welcome to Website</h3>
+
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends 'layout.html' %}
+
+{% block title %} Details {% endblock %}
+
+{% block styles %} {% endblock %}
+
+{% block login %}
+
+<span class="navbar-text">
+    <a class="nav-link active" aria-current="page" href="{{url_for('logout')}}">Logout</a>
+</span>
+
+{% endblock %}
+
+
+{% block content %}
+
+<form action="{{url_for('details')}}" method="post">
+
+    <input type="hidden" name="csrf_token" value="{{csrf}}">
+
+    <input type="hidden" name="train_id" value="{{train_id}}">
+    <input type="hidden" name="compartment_info" value="{{compartment_info}}">
+    <input type="hidden" name="train_start_time" value="{{train_start_time}}">
+    <input type="hidden" name="seat_info" value="{{seats}}">
+
+
+    {% for seat_no in seats %}
+
+    <h5>Passenger{{loop.index}}</h5>
+
+
+    <!-- Side Lower -->
+    {% if (seat_no % 8) == 1 %}
+
+    <label for="passenger{{loop.index}}">Name: </label>
+    <input type="text" name="passenger{{loop.index}}" id="passenger{{loop.index}}" required><br><br>
+    <label for="age{{loop.index}}">Age: </label>
+    <input type="number" name="age{{loop.index}}" id="age{{loop.index}}" min="{{min_d['SL']}}" required><br><br>
+
+    <!-- Side Upper -->
+    {% elif (seat_no % 8) == 5 %}
+
+    <label for="passenger{{loop.index}}">Name: </label>
+    <input type="text" name="passenger{{loop.index}}" id="passenger{{loop.index}}" required><br><br>
+    <label for="age{{loop.index}}">Age: </label>
+    <input type="number" name="age{{loop.index}}" id="age{{loop.index}}" min="{{min_d['SU']}}" required><br><br>
+
+    <!-- Lower -->
+    {% elif (seat_no % 4) == 0 %}
+
+    <label for="passenger{{loop.index}}">Name: </label>
+    <input type="text" name="passenger{{loop.index}}" id="passenger{{loop.index}}" required><br><br>
+    <label for="age{{loop.index}}">Age: </label>
+    <input type="number" name="age{{loop.index}}" id="age{{loop.index}}" min="{{min_d['L']}}" required><br><br>
+
+    <!-- Middle -->
+    {% elif (seat_no % 4) == 3 %}
+
+    <label for="passenger{{loop.index}}">Name: </label>
+    <input type="text" name="passenger{{loop.index}}" id="passenger{{loop.index}}" required><br><br>
+    <label for="age{{loop.index}}">Age: </label>
+    <input type="number" name="age{{loop.index}}" id="age{{loop.index}}" min="{{min_d['M']}}" required><br><br>
+
+    <!-- Upper -->
+    {% elif (seat_no % 4) == 2 %}
+
+    <label for="passenger{{loop.index}}">Name: </label>
+    <input type="text" name="passenger{{loop.index}}" id="passenger{{loop.index}}" required><br><br>
+    <label for="age{{loop.index}}">Age: </label>
+    <input type="number" name="age{{loop.index}}" id="age{{loop.index}}" min="{{min_d['U']}}" required><br><br>
+
+    {% endif %}
+
+    {% endfor %}
+
+    <button type="submit">Submit</button>
+
+</form>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+
+{% block title %} Available Trains {% endblock %}
+
+{% block styles %} {% endblock %}
+
+{% block login %} {% endblock %}
+
+{% block content %}
+
+{% for start, destination in routes %}
+
+<a
+    href="{{url_for('seats', train_id = start.train_id, date_time = search_date)}}">{{ train_names_map[start.train_id] }}</a>
+<p>{{ start_station_name }} {{ start.arrival_time }} {{start.depart_time}}</p>
+<p>{{ destination_station_name }} {{ destination.arrival_time }} {{destination.depart_time}}</p>
+
+{% endfor %}
+
+{% endblock %}
