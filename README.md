@@ -2,7 +2,7 @@
 
 ## Test Run Info
 
-1. Insert your mail id and password in the mail configuration (`__init__.py`)
+1. Insert the mail configuration details (`__init__.py`)
 2. `python run.py` to start the flask application
 3. SignUp using the `/signup` endpoint
 4. Search Trains using the `/search` endpoint
