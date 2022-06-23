@@ -30,8 +30,8 @@ app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(minutes=30)
 app.config["JWT_SESSION_COOKIE"] = False
 
 
-app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-app.config['MAIL_PORT'] = 465
+app.config['MAIL_SERVER'] = '<your_mail_server>'
+app.config['MAIL_PORT'] = '<your_port_number>'
 app.config['MAIL_USERNAME'] = '<your_mail_username>'
 app.config['MAIL_PASSWORD'] = '<your_mail_password>'
 app.config['MAIL_DEFAULT_SENDER'] = '<default_sender>'
