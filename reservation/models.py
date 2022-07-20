@@ -49,7 +49,6 @@ class Seat(db.Model):
     __tablename__ = 'seats'
 
     seat_id = db.Column(db.String(10), primary_key=True)
-    seat_status = db.Column(db.String(20), nullable=False)
     seat_type = db.Column(db.String(20), nullable=False)
 
     def __repr__(self):
