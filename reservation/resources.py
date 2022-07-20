@@ -211,7 +211,7 @@ class OTP(Resource):
 
         user = User.query.filter((User.user_email == email)).first()
 
-        if user and user.user_verified != 0 and user.user_verification_date >= datetime.now():
+        if user and user.user_verified != 0 and user.user_verified == int(otp) and user.user_verification_date >= datetime.now():
             user.user_verified = 0
             user.user_verification_date = datetime.now()
 

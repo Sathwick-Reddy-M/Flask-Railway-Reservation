@@ -19,7 +19,7 @@ class User(db.Model):
         self.user_verification_date = user_verification_date
 
     def __repr__(self):
-        return f'{self.user_id}, {self.user_name}'
+        return f'{self.user_id}, {self.user_email}'
 
 # Assumed that in every compartment the seat numbering starts from 1 to compartment_capacity
 

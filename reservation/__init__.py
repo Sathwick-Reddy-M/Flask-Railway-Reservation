@@ -5,9 +5,11 @@ from datetime import timedelta, datetime, timezone
 
 from reservation.db import db
 
-from reservation.resources import Login, Home, SignUp, LogOut, Temp, TrainDetails, Seats, Details, OTP
+from reservation.resources import Login, Home, SignUp, LogOut, TrainDetails, Seats, Details, OTP
 from reservation.blocklist import BLOCKED
 from reservation.forms import LoginForm
+
+import os
 
 
 app = Flask(__name__)
@@ -30,13 +32,12 @@ app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(minutes=30)
 app.config["JWT_SESSION_COOKIE"] = False
 
 
-app.config['MAIL_SERVER'] = '<your_mail_server>'
-app.config['MAIL_PORT'] = '<your_port_number>'
-app.config['MAIL_USERNAME'] = '<your_mail_username>'
-app.config['MAIL_PASSWORD'] = '<your_mail_password>'
-app.config['MAIL_DEFAULT_SENDER'] = '<default_sender>'
-app.config['MAIL_USE_TLS'] = False
-app.config['MAIL_USE_SSL'] = True
+app.config['MAIL_SERVER'] = 'smtp.office365.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USERNAME'] = os.environ.get('flask-mail-username')
+app.config['MAIL_PASSWORD'] = os.environ.get('flask-mail-password')
+app.config['MAIL_DEFAULT_SENDER'] = os.environ.get('flask-mail-username')
+app.config['MAIL_USE_TLS'] = True
 
 api = Api(app)
 jwt = JWTManager(app)
