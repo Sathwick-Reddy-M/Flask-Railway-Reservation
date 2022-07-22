@@ -155,14 +155,11 @@ class Seats(Resource):
         seat_details = TCSP.query.filter(and_(and_(TCSP.train_start_time >= date_time, TCSP.train_start_time < (
             date_time + timedelta(days=1))), TCSP.train_id == train_id)).order_by(TCSP.compartment_order).all()
 
-        print(seat_details)
-
         return make_response(render_template('seats.html', train_details=train_details, seat_details=seat_details, csrf=get_jwt()['csrf']))
 
     @ jwt_required()
     def post(self, train_id, date_time):
         seats = request.form.getlist("seatSelection")
-        print(seats)
 
         if len(seats) > 0 and len(seats) < 5:
             seat_info = []
@@ -176,7 +173,7 @@ class Seats(Resource):
             train_start_time = datetime.fromisoformat(' '.join(time))
 
             min_d = {'SL': 35, 'SU': 3, 'L': 30, 'M': 25, 'U': 3}
-            if (train_start_time + timedelta(hours=5)) >= datetime.now():
+            if train_start_time < datetime.now() + timedelta(hours=5):
                 min_d = {key: 3 for key in min_d}
 
             return make_response(render_template('details.html', seats=seat_info, train_id=train_id, compartment_info=compartment_info, train_start_time=train_start_time, csrf=get_jwt()['csrf'], min_d=min_d))
@@ -188,7 +185,6 @@ class Details(Resource):
 
     @ jwt_required()
     def post(self):
-        print(request.form)
         train_id = request.form['train_id']
         compartment_info = request.form['compartment_info'][1:-1].split(', ')
         seats = request.form['seat_info'][1:-1].split(', ')
